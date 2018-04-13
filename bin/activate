@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/Momo/Code/appbot/venv"
+VIRTUAL_ENV="/Users/Momo/Code/sub/subscriptions/subscriptions"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
