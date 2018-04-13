@@ -1,0 +1,183 @@
+<!-- MODAL INFORMATION TAKEN FROM https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal, build by Momo -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+nav {
+    font-size:50px;
+    padding: 10px;
+    margin: 20px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 2;
+    top: 2;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: top;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn1 {
+    margin-left: 20px;
+    background-color: #008CBA;
+    font-size: 16px;
+    padding:10px 24px;
+    color: white;
+    border: none;
+    float: left;
+    border-radius: 4px;
+}
+
+.btn2 {
+    /*margin-left: 20px;*/
+    background-color: #009933;
+    font-size: 16px;
+    padding:10px 24px;
+    color: white;
+    border: none;
+    float: left;
+    border-radius: 4px;
+
+    position: absolute;
+    right:    50px;
+    bottom:   10px;
+}
+
+
+
+.btn1:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.textbox {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 20px;
+    width: 850px;
+    height: 120px;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+<body>
+
+<nav>Write a message to subscribers</nav>
+	
+<form name = "form1">
+	<textarea class="textbox" id="myText" name="userInput" placeholder="Type in your message" rows="5"></textarea> 
+    <h6 class="pull-right" id="count_message"></h6>
+    <br>
+</form>
+
+<button id="myBtn" class=btn1>Preview Message</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div id="modal1" class="modal-content">
+    <span class="close">&times;</span>
+    <span id="myText"></span>
+    <button id="myConfirmBtn" class="btn2">Send Message</button>
+  </div>
+
+</div>
+
+<script>
+
+// Modal that will show message preview
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+var confirm_button = document.getElementById("myConfirmBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+    var para = document.createElement("p");
+    var the_text = document.form1.userInput.value;
+    var node = document.createTextNode(the_text);
+
+    para.appendChild(node);
+
+    var modalcontent = document.getElementById("modal1");
+    modalcontent.appendChild(para);
+}
+
+function ClearText() {
+    $( "p" ).remove();
+}
+
+confirm_button.onclick = function() {
+
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+    ClearText();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        ClearText();
+    }
+}
+
+</script>
+
+</body>
+</html>
+
+{% endblock %}
