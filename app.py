@@ -1,6 +1,7 @@
 # flask libraries
 from flask import Flask, render_template, url_for, redirect, session, request
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 
 #system libraries
 import os
@@ -13,6 +14,9 @@ import uuid
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+
 bootstrap = Bootstrap()
 bootstrap.init_app(app)
 
@@ -22,7 +26,12 @@ def new_func():
 
 @app.route('/login')
 def login():
-	return render_template("login.html")
+	form = LoginForm()
+	if form.validate_on_submit():
+		flash('Login requested for user {}, remember_me={}'.format(
+			form.username.data, form.remember_me.data))
+		return redirect('/message')
+	return render_template("login.html", title="Sign In", form=form)
 
 @app.route('/message', methods=['GET', 'POST'])
 def message():
