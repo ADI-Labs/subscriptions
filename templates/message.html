@@ -107,13 +107,13 @@ nav {
 
 <nav>Write a message to subscribers</nav>
 	
-<form name = "form1">
+<form name = "form1" action="" method="post">
 	<textarea class="textbox" id="myText" name="userInput" placeholder="Type in your message" rows="5"></textarea> 
     <h6 class="pull-right" id="count_message"></h6>
     <br>
-</form>
 
-<button id="myBtn" class=btn1>Preview Message</button>
+
+<button id="myBtn" type="button" class=btn1>Preview Message</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -122,10 +122,11 @@ nav {
   <div id="modal1" class="modal-content">
     <span class="close">&times;</span>
     <span id="myText"></span>
-    <button id="myConfirmBtn" class="btn2">Send Message</button>
+    <input id="myConfirmBtn" class="btn2" type="Submit">
   </div>
 
 </div>
+</form>
 
 <script>
 

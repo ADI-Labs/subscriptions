@@ -35,11 +35,19 @@ def login():
 
 @app.route('/message', methods=['GET', 'POST'])
 def message():
-	return render_template("message.html")
+    
+    if request.method == 'POST':
+        message = request.form['userInput']
+#--->handle message to db query here        
+        
+    
+    return render_template("message.html")
+
 
 # database
 urllib.parse.uses_netloc.append("postgres")
-url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
+url = urllib.parse.urlparse(os.environ['postgres://rebtvlwibhdvwf:4d7f99eef7c8028b3fd6'
+	+'303a08f43986eed2368acb84ecf84f323cb77491cba4@ec2-54-163-234-20.compute-1.amazonaws.com:5432/dc4m6ge7e3ahn6'])
 
 conn = psycopg2.connect(
         database=url.path[1:],
@@ -49,6 +57,7 @@ conn = psycopg2.connect(
         port=url.port
     )
 cur = conn.cursor()
+
 
 if __name__ == "__main__":
 	app.run()
