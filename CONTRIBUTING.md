@@ -24,7 +24,8 @@ To deactivate the environment, simply write:
 In app.py, the line (`url = urllib.parse.urlparse(os.environ['DATABASE_URL'])`) connects the database to the front-end.
 
 To set up the database on your computer, contact an organizer at `lionbot@adicu.com` in your terminal enter simliar to code to this:
-`export ACCESS_TOKEN=TOKEN_HERE
+```
+export ACCESS_TOKEN=TOKEN_HERE
 export CLIENT_ACCESS_TOKEN=TOKEN_HERE
 export DATABASE_URL=POSTGRES_HERE
 export DEVELOPER_ACCESS_TOKEN=TOKEN_HERE
@@ -32,8 +33,8 @@ export SECRET_KEY=TOKEN_HERE
 export TZ=America/New_York
 export VERIFY_TOKEN=TOKEN_HERE
 export YELP_API_KEY=TOKEN_HERE
-export WEATHER_API_KEY=TOKEN_HERE`
-
+export WEATHER_API_KEY=TOKEN_HERE
+```
 # How to Run the Web App
 
 (Written for Mac)
@@ -68,6 +69,7 @@ Locally, you can run `git pull && git checkout [branch]` to switch to the new br
 
 As of 4/27/18:
 
+```
 C: \Subscriptions
 |--- app.py
 |--- CONTRIBUTING.md
@@ -80,6 +82,7 @@ C: \Subscriptions
 |	|__ index.html
 |	|__ login.html
 | 	|__ message.html 
+```
 
 ## Now what?
 Woo! You've gone through the process of adding a new feature to the ]bot. Continue working on new things to help make LionBot even better.
