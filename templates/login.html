@@ -8,33 +8,30 @@
 		<center>
 	<h1> Login </h1>
 	<br>
-	<p><label for="email"> Club Email:  </label>
-	<input type="text" class="form-control" name="email"> </p>
+	<p><label for="username"> Club Username:  </label>
+	<input type="text" class="css-class" name="username" value="" id="username"/> </p>
 	<br>
 	<p><label for="password"> Password:  </label>
-	<input type="password" class="form-control" name="password"></p>
+	<input type="password" id="password" name="password" value="" /></p>
 	<br>
 		
-	{% macro render_field(field) %}
-		<dt> {{ field.label }}
-		<dd> {{ field(**kwargs)|safe }}
-		{% if field.errors %}
-			<ul class=errors>
-			{% for error in field.errors %}
-				<li> {{ error }} </li>
-			{% endfor %}
-			</ul>
-		{% endif %}
-		</dd>
-	{% endmacro %}
+
+	<form method="POST" action='/login'>
+		<div>{{ form.username.label }}: {{ form.username(class='css_class')}}</div>
+		<div>{{ form.password.label }}: {{ form.password()}}</div>
+	</form>
+
+	{% if current_user.is_authenticated %}
+		Hi {{current_user.name}}
+	{% endif %}
 
 
-    <div class="col-md-4">
+<!--     <div class="col-md-4">
     	{{ wtf.quick_form(form) }}
     	<br>
     <p>Don't have an account? Sign up <a href="{{ url_for('auth.register') }}">here</a></p>
 	</div>
-    <div class="col-md-1">
+    <div class="col-md-1"> -->
 
 
 	<button type="button" class="btn btn-success">Submit</button>	
