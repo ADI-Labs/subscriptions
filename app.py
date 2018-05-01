@@ -68,13 +68,21 @@ def logout():
 @app.route('/message', methods=['GET', 'POST'])
 @login_required
 def message():
-	return render_template("message.html")
+    
+    if request.method == 'POST':
+        message = request.form['userInput']
+#--->handle message to db query here        
+        
+    
+    return render_template("message.html")
+
 
 
 
 # database
 urllib.parse.uses_netloc.append("postgres")
 url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
+
 
 conn = psycopg2.connect(
         database=url.path[1:],
@@ -86,6 +94,10 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 
+<<<<<<< HEAD
+if __name__ == "__main__":
+	app.run()
+=======
 
 if __name__ == "__main__":
 	app.run()
@@ -106,3 +118,4 @@ if __name__ == "__main__":
 # flask textbook
 # chapter 8: user authentication, user model
 
+>>>>>>> 1138802909956cd3427f33eff769148ba8abe373
