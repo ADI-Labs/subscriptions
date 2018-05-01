@@ -94,11 +94,6 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 
-<<<<<<< HEAD
-if __name__ == "__main__":
-	app.run()
-=======
-
 if __name__ == "__main__":
 	app.run()
 
@@ -118,4 +113,3 @@ if __name__ == "__main__":
 # flask textbook
 # chapter 8: user authentication, user model
 
->>>>>>> 1138802909956cd3427f33eff769148ba8abe373
