@@ -23,16 +23,16 @@ To deactivate the environment, simply write:
 
 In app.py, the line (`url = urllib.parse.urlparse(os.environ['DATABASE_URL'])`) connects the database to the front-end.
 
-To set up the database on your computer, in your terminal enter simliar to code to this:
-`export ACCESS_TOKEN=EAAWZBHDmbOYIBAKQg0rFcICZB406zEujHlJ7b5nyKfv0zIYs0E6Un53RZB01YgPShenUSqKKgRc5300KCSZA6pJIlA0JZBxZClAMOlzf8NGPNJlhnIgVf3taQNZCV9HZBK86b4Nie2THtLBmLUnr2zODpq0gru6f1d2zOFfxNKl8QZDZD
-export CLIENT_ACCESS_TOKEN=dd23796379734fa7b8bc19763efce73e
-export DATABASE_URL=postgres://rebtvlwibhdvwf:4d7f99eef7c8028b3fd6303a08f43986eed2368acb84ecf84f323cb77491cba4@ec2-54-163-234-20.compute-1.amazonaws.com:5432/dc4m6ge7e3ahn6
-export DEVELOPER_ACCESS_TOKEN=f71800d0efce444fa1963c319c67d696
-export SECRET_KEY=li0nsecur1ty
+To set up the database on your computer, contact an organizer at `lionbot@adicu.com` in your terminal enter simliar to code to this:
+`export ACCESS_TOKEN=TOKEN_HERE
+export CLIENT_ACCESS_TOKEN=TOKEN_HERE
+export DATABASE_URL=POSTGRES_HERE
+export DEVELOPER_ACCESS_TOKEN=TOKEN_HERE
+export SECRET_KEY=TOKEN_HERE
 export TZ=America/New_York
-export VERIFY_TOKEN=li0nB0t
-export YELP_API_KEY=w5JFtwCUKq05GlSpm8cKo51dBYDQ6r9tyzo-qRsKt4wDyB5_ro6gW5gnG9hS6bvnNHNxOQLHfw7o_9S1e86nkvgcU7DQI_sM6GVt9rqcq_rRYKtagQrexuH0zsU0WXYx
-export WEATHER_API_KEY=d428ef31dbebc9f901bbf4c087bb978b`
+export VERIFY_TOKEN=TOKEN_HERE
+export YELP_API_KEY=TOKEN_HERE
+export WEATHER_API_KEY=TOKEN_HERE`
 
 # How to Run the Web App
 
