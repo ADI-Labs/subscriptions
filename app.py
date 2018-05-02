@@ -119,7 +119,6 @@ def submit_message(message):
 if __name__ == "__main__":
 	app.run()
 
-
 # build user mixin class flask
 # sql alchemy
 # checking , query database for username, check if fails
