@@ -13,6 +13,7 @@ import os
 import psycopg2
 import urllib.parse
 import uuid
+import datetime
 
 app = Flask(__name__)
 app.config.update(dict(
@@ -61,7 +62,7 @@ def settings():
 @app.route('/logout')
 @login_required
 def logout():
-	logout_user()
+	#logout_user()
 	# return redirect(url_for('login'))
 	return render_template("login.html")
 
@@ -71,33 +72,51 @@ def message():
     
     if request.method == 'POST':
         message = request.form['userInput']
-#--->handle message to db query here        
+#--->handle message to db query here
+        submit_message(message)
         
     
     return render_template("message.html")
 
-
-
-
 # database
-urllib.parse.uses_netloc.append("postgres")
-url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
+def submit_message(message):
+
+    DATABASE_URL="postgres://rebtvlwibhdvwf:4d7f99eef7c8028b3fd6303a08f43986eed2368acb84ecf84f323cb77491cba4@ec2-54-163-234-20.compute-1.amazonaws.com:5432/dc4m6ge7e3ahn6"
+
+    urllib.parse.uses_netloc.append("postgres")
+    #url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
+    url = urllib.parse.urlparse(DATABASE_URL)
+
+    conn = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+    cur = conn.cursor()
+
+    try:
+            date = datetime.datetime.now()
+            today = date.strftime("%x");
+            category = "health"
+            in_message = "INSERT INTO subscription_message VALUES('%s', '%s', '%s')" % (category, message, today)
+            print(in_message)
+            cur.execute(in_message)
+            conn.commit()
+    except:
+            print("ERROR: Insert message failed.")
 
 
-conn = psycopg2.connect(
-        database=url.path[1:],
-        user=url.username,
-        password=url.password,
-        host=url.hostname,
-        port=url.port
-    )
-cur = conn.cursor()
-
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 if __name__ == "__main__":
 	app.run()
 =======
+
+=======
+>>>>>>> e6c7455058533008dc8f841a68e3511b1d8fefff
 
 if __name__ == "__main__":
 	app.run()
@@ -117,5 +136,9 @@ if __name__ == "__main__":
 
 # flask textbook
 # chapter 8: user authentication, user model
+<<<<<<< HEAD
 
 >>>>>>> 1138802909956cd3427f33eff769148ba8abe373
+=======
+>>>>>>> e6c7455058533008dc8f841a68e3511b1d8fefff
+
