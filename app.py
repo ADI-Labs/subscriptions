@@ -13,6 +13,7 @@ import os
 import psycopg2
 import urllib.parse
 import uuid
+import datetime
 
 app = Flask(__name__)
 app.config.update(dict(
@@ -61,7 +62,7 @@ def settings():
 @app.route('/logout')
 @login_required
 def logout():
-	logout_user()
+	#logout_user()
 	# return redirect(url_for('login'))
 	return render_template("login.html")
 
@@ -71,27 +72,48 @@ def message():
     
     if request.method == 'POST':
         message = request.form['userInput']
-#--->handle message to db query here        
+#--->handle message to db query here
+        submit_message(message)
         
     
     return render_template("message.html")
 
-
-
-
 # database
-urllib.parse.uses_netloc.append("postgres")
-url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
-
-
-conn = psycopg2.connect(
-        database=url.path[1:],
-        user=url.username,
-        password=url.password,
-        host=url.hostname,
-        port=url.port
-    )
-cur = conn.cursor()
+def submit_message(message):
+    urllib.parse.uses_netloc.append("postgres")
+    url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
+    
+    conn = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+    cur = conn.cursor()
+    
+    try:
+            
+            date = datetime.datetime.now()
+            today = date.strftime("%x") + "";
+            messageid = 3
+            #in_message = "UPDATE subscription SET messenger_id_list = array_append(messenger_id_list, '%s') WHERE category = '%s'" % (recipient_id, click_menu)           
+            in_message = "INSERT INTO subscription_messages VALUES('%s', '%s', '%s')" % (messageid, message, today)
+            upcat = "UPDATE subscription SET message_id_list = array_append(message_id_list, %s) WHERE category = 'environmental'" % (messageid)           
+            print(in_message)
+            print(upcat)
+            cur.execute(in_message)
+            cur.execute(upcat)
+            cur.execute("SELECT * FROM subscription_messages")
+            result = cur.fetchall()
+            print(result)
+            cur.execute("SELECT * FROM subscription")
+            result = cur.fetchall()
+            print(result)
+            conn.commit()
+            
+    except:
+            print("ERROR: Insert message failed.")
 
 
 if __name__ == "__main__":
@@ -112,4 +134,3 @@ if __name__ == "__main__":
 
 # flask textbook
 # chapter 8: user authentication, user model
-
