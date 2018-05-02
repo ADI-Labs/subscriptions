@@ -81,11 +81,8 @@ def message():
 # database
 def submit_message(message):
 
-    DATABASE_URL="postgres://rebtvlwibhdvwf:4d7f99eef7c8028b3fd6303a08f43986eed2368acb84ecf84f323cb77491cba4@ec2-54-163-234-20.compute-1.amazonaws.com:5432/dc4m6ge7e3ahn6"
-
     urllib.parse.uses_netloc.append("postgres")
-    #url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
-    url = urllib.parse.urlparse(DATABASE_URL)
+    url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
 
     conn = psycopg2.connect(
             database=url.path[1:],
