@@ -80,10 +80,9 @@ def message():
 
 # database
 def submit_message(message):
-
     urllib.parse.uses_netloc.append("postgres")
     url = urllib.parse.urlparse(os.environ['DATABASE_URL'])
-
+    
     conn = psycopg2.connect(
             database=url.path[1:],
             user=url.username,
@@ -92,31 +91,34 @@ def submit_message(message):
             port=url.port
         )
     cur = conn.cursor()
-
+    
     try:
+            
             date = datetime.datetime.now()
-            today = date.strftime("%x");
-            category = "health"
-            in_message = "INSERT INTO subscription_message VALUES('%s', '%s', '%s')" % (category, message, today)
+            today = date.strftime("%x") + "";
+            messageid = 3
+            #in_message = "UPDATE subscription SET messenger_id_list = array_append(messenger_id_list, '%s') WHERE category = '%s'" % (recipient_id, click_menu)           
+            in_message = "INSERT INTO subscription_messages VALUES('%s', '%s', '%s')" % (messageid, message, today)
+            upcat = "UPDATE subscription SET message_id_list = array_append(message_id_list, %s) WHERE category = 'environmental'" % (messageid)           
             print(in_message)
+            print(upcat)
             cur.execute(in_message)
+            cur.execute(upcat)
+            cur.execute("SELECT * FROM subscription_messages")
+            result = cur.fetchall()
+            print(result)
+            cur.execute("SELECT * FROM subscription")
+            result = cur.fetchall()
+            print(result)
             conn.commit()
+            
     except:
             print("ERROR: Insert message failed.")
 
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
 if __name__ == "__main__":
 	app.run()
-=======
 
-=======
->>>>>>> e6c7455058533008dc8f841a68e3511b1d8fefff
-
-if __name__ == "__main__":
-	app.run()
 
 # build user mixin class flask
 # sql alchemy
@@ -133,9 +135,3 @@ if __name__ == "__main__":
 
 # flask textbook
 # chapter 8: user authentication, user model
-<<<<<<< HEAD
-
->>>>>>> 1138802909956cd3427f33eff769148ba8abe373
-=======
->>>>>>> e6c7455058533008dc8f841a68e3511b1d8fefff
-
